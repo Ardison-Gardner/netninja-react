@@ -10,7 +10,6 @@ const useFetch = (url) => {
 
     const abortCont = new window.AbortController();
 
-    setTimeout(() => {
       fetch(url, { signal: abortCont.signal })
       .then(res => {
         if (!res.ok) { // error coming back from server
@@ -30,8 +29,7 @@ const useFetch = (url) => {
           setIsPending(false);
           setError(err.message);
         }
-      })
-    }, 1000);
+      });
 
     return () => abortCont.abort();
   }, [url])
